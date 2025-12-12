@@ -1,0 +1,74 @@
+{
+  "name": "Sales Intelligence Platform - Java 21 + Spring Boot",
+  "image": "mcr.microsoft.com/devcontainers/java:21",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "jdkDistro": "tem",
+      "installMaven": "true",
+      "installGradle": "true"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "dockerDashComposeVersion": "v2"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-spring-boot-dashboard",
+        "pivotal.vscode-spring-boot",
+        "vmware.vscode-boot-dev-pack",
+        "redhat.java",
+        "ms-azuretools.vscode-docker",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "humao.rest-client",
+        "eamodio.gitlens",
+        "sonarsource.sonarlint-vscode"
+      ],
+      "settings": {
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-21",
+            "path": "/usr/local/sdkman/candidates/java/current"
+          }
+        ],
+        "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current",
+        "spring-boot.ls.java.home": "/usr/local/sdkman/candidates/java/current"
+      }
+    }
+  },
+  
+  "forwardPorts": [
+    8080, 8081, 8082, 8083, 8084, 8085,
+    5432, 27017, 6379, 7687,
+    9092, 2181,
+    9411, 9090, 3000
+  ],
+  
+  "portsAttributes": {
+    "8080": { "label": "AI Agent Orchestrator" },
+    "8081": { "label": "Research Engine" },
+    "8082": { "label": "Briefing Pack Service" },
+    "8083": { "label": "Offer Builder" },
+    "8084": { "label": "API Gateway" },
+    "5432": { "label": "PostgreSQL" },
+    "27017": { "label": "MongoDB" },
+    "6379": { "label": "Redis" },
+    "7687": { "label": "Neo4j" },
+    "9092": { "label": "Kafka" },
+    "9411": { "label": "Zipkin" }
+  },
+  
+  "postCreateCommand": "java -version && mvn -version && docker --version && echo '✅ Dev Container Ready!'",
+  
+  "remoteUser": "vscode"
+}
